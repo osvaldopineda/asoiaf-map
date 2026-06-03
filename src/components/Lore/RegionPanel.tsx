@@ -1,12 +1,15 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useAppStore } from '../../store/useAppStore'
-import { REGION_MAP } from '../../data/regions'
+import { REGION_MAP, ERAS } from '../../data/regions'
 import Sigil from './Sigil'
 
 export default function RegionPanel() {
   const selectedRegionId = useAppStore((s) => s.selectedRegionId)
   const select = useAppStore((s) => s.select)
+  const eraId = useAppStore((s) => s.eraId)
   const region = selectedRegionId ? REGION_MAP[selectedRegionId] : null
+  const era = ERAS.find((e) => e.id === eraId)
+  const eraInfo = region?.eras[eraId]
 
   return (
     <AnimatePresence>
@@ -55,6 +58,20 @@ export default function RegionPanel() {
               <Meta label="Capital" value={region.capital} />
               <Meta label="Casa" value={region.rulingHouse} />
             </div>
+
+            {/* Era ruler (driven by the timeline) */}
+            {era && eraInfo && (
+              <div
+                className="mt-5 rounded-lg p-3.5"
+                style={{ backgroundColor: `${region.houseColor}14`, border: `1px solid ${region.houseColor}40` }}
+              >
+                <p className="font-heading text-[10px] uppercase tracking-[0.2em] text-ink/50">
+                  ⏳ En {era.name}
+                </p>
+                <p className="font-heading mt-1 text-base font-bold text-ink">{eraInfo.ruler}</p>
+                <p className="font-lore mt-1 text-[0.98rem] leading-relaxed text-ink/75">{eraInfo.note}</p>
+              </div>
+            )}
 
             {/* Geography */}
             <p className="font-lore mt-5 text-[1.05rem] leading-relaxed text-ink/85">

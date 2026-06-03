@@ -1,4 +1,11 @@
-import type { Region } from '../types'
+import type { Region, Era } from '../types'
+
+/** Timeline eras, oldest → newest. */
+export const ERAS: Era[] = [
+  { id: 'age-of-heroes', name: 'Era de los Héroes', hint: 'milenios antes de la Conquista' },
+  { id: 'conquest',      name: 'La Conquista',       hint: 'Aegon I unifica los Siete Reinos' },
+  { id: 'five-kings',    name: 'Guerra de los Cinco Reyes', hint: 'el presente de la saga' },
+]
 
 /**
  * Mapa PLACEHOLDER — formas inventadas (sin IP), solo para validar la interacción.
@@ -41,6 +48,11 @@ export const REGIONS: Region[] = [
           'Mucho antes de la Conquista, los Stark gobernaron el Norte como reyes durante miles de años, sometiendo a rivales como los Bolton de Fuerte Terror —que en tiempos oscuros desollaban a sus enemigos.',
       },
     ],
+    eras: {
+      'age-of-heroes': { ruler: 'Reyes del Invierno (Casa Stark)', note: 'Los Stark reinan como reyes independientes y someten a casas rivales como los Bolton.' },
+      'conquest':      { ruler: 'Casa Stark · Guardianes del Norte', note: 'Torrhen Stark dobla la rodilla ante Aegon sin batalla — el «Rey que se Arrodilló».' },
+      'five-kings':    { ruler: 'Robb Stark, el Joven Lobo', note: 'Proclamado Rey en el Norte tras la ejecución de su padre, Eddard.' },
+    },
   },
   {
     id: 'riverlands',
@@ -77,6 +89,11 @@ export const REGIONS: Region[] = [
           'Las Tierras de los Ríos jamás sostuvieron una dinastía estable: fueron conquistadas por tormenta, roca y ándalos. Los Tully ascendieron tarde, al apoyar a Aegon el Conquistador contra el cruel rey Harren el Negro.',
       },
     ],
+    eras: {
+      'age-of-heroes': { ruler: 'Reyes de los Ríos y las Colinas', note: 'Casas en pugna constante; ninguna dinastía logra perdurar.' },
+      'conquest':      { ruler: 'Casa Tully', note: 'Los Tully se rebelan contra Harren el Negro; Aegon los nombra Señores Supremos del Tridente.' },
+      'five-kings':    { ruler: 'Edmure Tully (bajo el Rey en el Norte)', note: 'Tierra arrasada por la guerra entre lobos y leones.' },
+    },
   },
   {
     id: 'westerlands',
@@ -113,6 +130,11 @@ export const REGIONS: Region[] = [
           'El célebre «Un Lannister siempre paga sus deudas» no es el lema oficial de la casa, sino un dicho que inspira tanto respeto como temor. Su poder real nace del oro inagotable de sus minas… que en los libros empieza, ominosamente, a agotarse.',
       },
     ],
+    eras: {
+      'age-of-heroes': { ruler: 'Casa Casterly → Casa Lannister', note: 'Lann el Astuto arrebata Roca Casterly a los Casterly con pura astucia.' },
+      'conquest':      { ruler: 'Casa Lannister', note: 'La reina Loren se rinde tras el Campo de Fuego; conservan tierras y oro.' },
+      'five-kings':    { ruler: 'Tywin Lannister', note: 'Su oro financia la guerra; su nieto Joffrey ocupa el Trono de Hierro.' },
+    },
   },
 ]
 

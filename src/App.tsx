@@ -3,6 +3,7 @@ import MapCanvas from './components/Map/MapCanvas'
 import RegionPanel from './components/Lore/RegionPanel'
 import LoadingScreen from './components/UI/LoadingScreen'
 import SoundToggle from './components/UI/SoundToggle'
+import EraSelector from './components/Timeline/EraSelector'
 import { useAmbientSound } from './hooks/useAmbientSound'
 
 export default function App() {
@@ -29,11 +30,9 @@ export default function App() {
         </p>
       </header>
 
-      {/* Hint */}
-      <div className="pointer-events-none absolute bottom-0 left-0 z-[550] p-4">
-        <p className="font-lore text-sm italic text-parchment/45">
-          Toca una región para descubrir su historia…
-        </p>
+      {/* Timeline */}
+      <div className="absolute bottom-5 left-1/2 z-[550] -translate-x-1/2">
+        <EraSelector />
       </div>
 
       <RegionPanel />

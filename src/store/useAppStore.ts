@@ -5,6 +5,8 @@ interface AppState {
   select: (id: string | null) => void
   soundOn: boolean
   toggleSound: () => void
+  eraId: string
+  setEra: (id: string) => void
 }
 
 export const useAppStore = create<AppState>((set) => ({
@@ -12,4 +14,6 @@ export const useAppStore = create<AppState>((set) => ({
   select: (id) => set({ selectedRegionId: id }),
   soundOn: false,
   toggleSound: () => set((s) => ({ soundOn: !s.soundOn })),
+  eraId: 'five-kings', // start in the present of the saga
+  setEra: (id) => set({ eraId: id }),
 }))
