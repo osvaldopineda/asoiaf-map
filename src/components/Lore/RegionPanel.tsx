@@ -1,6 +1,7 @@
 import { AnimatePresence, motion } from 'framer-motion'
 import { useAppStore } from '../../store/useAppStore'
 import { REGION_MAP } from '../../data/regions'
+import Sigil from './Sigil'
 
 export default function RegionPanel() {
   const selectedRegionId = useAppStore((s) => s.selectedRegionId)
@@ -32,17 +33,22 @@ export default function RegionPanel() {
               ✕
             </button>
 
-            {/* Title */}
-            <p
-              className="font-heading text-xs uppercase tracking-[0.25em]"
-              style={{ color: region.houseColor }}
-            >
-              {region.rulingHouse}
-            </p>
-            <h2 className="font-decorative mt-1 text-4xl font-bold leading-tight text-ink">
-              {region.name}
-            </h2>
-            <p className="font-lore mt-2 text-lg italic text-ink/70">«{region.words}»</p>
+            {/* Crest + Title */}
+            <div className="flex items-start gap-4 pr-10">
+              <Sigil regionId={region.id} color={region.houseColor} />
+              <div className="min-w-0">
+                <p
+                  className="font-heading text-xs uppercase tracking-[0.25em]"
+                  style={{ color: region.houseColor }}
+                >
+                  {region.rulingHouse}
+                </p>
+                <h2 className="font-decorative mt-1 text-3xl font-bold leading-tight text-ink">
+                  {region.name}
+                </h2>
+              </div>
+            </div>
+            <p className="font-lore mt-3 text-lg italic text-ink/70">«{region.words}»</p>
 
             {/* Meta */}
             <div className="mt-5 flex gap-6 border-y border-ink/15 py-3">
