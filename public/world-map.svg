@@ -1,0 +1,110 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1400" width="1000" height="1400">
+  <defs>
+    <linearGradient id="sea" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#c9bd9a"/>
+      <stop offset="1" stop-color="#bcae84"/>
+    </linearGradient>
+    <radialGradient id="land" cx="45%" cy="38%" r="75%">
+      <stop offset="0" stop-color="#efe4c8"/>
+      <stop offset="1" stop-color="#e2d3af"/>
+    </radialGradient>
+
+    <!-- Organic coastline roughening -->
+    <filter id="rough" x="-6%" y="-6%" width="112%" height="112%">
+      <feTurbulence type="fractalNoise" baseFrequency="0.011 0.016" numOctaves="3" seed="11" result="n"/>
+      <feDisplacementMap in="SourceGraphic" in2="n" scale="14" xChannelSelector="R" yChannelSelector="G"/>
+    </filter>
+
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="9"/>
+    </filter>
+
+    <!-- Sea chart graticule -->
+    <pattern id="grid" width="80" height="80" patternUnits="userSpaceOnUse">
+      <path d="M80 0 H0 V80" fill="none" stroke="#9a8a5e" stroke-width="0.6" opacity="0.16"/>
+    </pattern>
+
+    <!-- Continent silhouette (shared) -->
+    <path id="coast"
+      d="M480,120 C600,140 700,210 690,360 C684,470 642,520 660,620
+         C676,724 702,820 660,920 C642,1016 600,1124 520,1240
+         C470,1306 418,1250 400,1150 C382,1044 360,982 300,944
+         C238,902 250,820 300,762 C360,722 330,660 300,600
+         C270,520 300,420 360,340 C402,260 420,168 480,120 Z"/>
+  </defs>
+
+  <!-- Ocean -->
+  <rect width="1000" height="1400" fill="url(#sea)"/>
+  <rect width="1000" height="1400" fill="url(#grid)"/>
+
+  <!-- Faint depth rings echoing the coast -->
+  <use href="#coast" fill="none" stroke="#a6925f" stroke-width="3" opacity="0.18" transform="translate(500 700) scale(1.06) translate(-500 -700)"/>
+  <use href="#coast" fill="none" stroke="#a6925f" stroke-width="2" opacity="0.12" transform="translate(500 700) scale(1.12) translate(-500 -700)"/>
+
+  <!-- Coast halo -->
+  <use href="#coast" fill="none" stroke="#8a7038" stroke-width="16" opacity="0.30" filter="url(#soft)"/>
+
+  <!-- Landmass (organic) -->
+  <g filter="url(#rough)">
+    <use href="#coast" fill="url(#land)" stroke="#5b4a2f" stroke-width="3.5"/>
+    <use href="#coast" fill="none" stroke="#efe4c8" stroke-width="1.2" opacity="0.6"/>
+  </g>
+
+  <!-- ── Terrain glyphs (crisp, drawn over land) ─────────────────────────── -->
+  <!-- Northern mountains -->
+  <g stroke="#5b4a2f" stroke-width="2.4" fill="none" stroke-linecap="round" opacity="0.8">
+    <path d="M430,330 l16,-22 l16,22"/>
+    <path d="M462,338 l18,-26 l18,26"/>
+    <path d="M500,330 l16,-22 l16,22"/>
+    <path d="M540,344 l18,-26 l18,26"/>
+    <path d="M470,300 l14,-20 l14,20"/>
+  </g>
+  <!-- Central spine -->
+  <g stroke="#5b4a2f" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7">
+    <path d="M470,640 l14,-18 l14,18"/>
+    <path d="M500,650 l14,-18 l14,18"/>
+    <path d="M484,665 l14,-18 l14,18"/>
+  </g>
+  <!-- Western hills -->
+  <g stroke="#5b4a2f" stroke-width="2" fill="none" stroke-linecap="round" opacity="0.7">
+    <path d="M300,800 l13,-17 l13,17"/>
+    <path d="M328,810 l13,-17 l13,17"/>
+  </g>
+
+  <!-- Forests -->
+  <g fill="#6f7a4a" opacity="0.55">
+    <circle cx="560" cy="420" r="4"/><circle cx="574" cy="432" r="3.4"/><circle cx="548" cy="434" r="3.4"/>
+    <circle cx="588" cy="424" r="3"/><circle cx="562" cy="446" r="3"/>
+    <circle cx="430" cy="560" r="4"/><circle cx="444" cy="572" r="3.4"/><circle cx="418" cy="572" r="3"/>
+    <circle cx="600" cy="980" r="4"/><circle cx="614" cy="992" r="3.4"/><circle cx="588" cy="992" r="3"/>
+    <circle cx="470" cy="1120" r="3.6"/><circle cx="484" cy="1130" r="3"/>
+  </g>
+
+  <!-- Rivers (a forking trident in the central lands) -->
+  <g fill="none" stroke="#4a6a8a" stroke-width="2.4" opacity="0.5" stroke-linecap="round">
+    <path d="M648,545 C580,590 560,650 575,715"/>
+    <path d="M520,560 C540,610 552,655 575,715"/>
+    <path d="M470,600 C500,640 540,668 575,715"/>
+  </g>
+
+  <!-- ── Cartographic decor ──────────────────────────────────────────────── -->
+  <!-- Compass rose -->
+  <g transform="translate(160 1230)" opacity="0.85">
+    <circle r="44" fill="none" stroke="#5b4a2f" stroke-width="1.5"/>
+    <circle r="34" fill="none" stroke="#5b4a2f" stroke-width="0.8" opacity="0.6"/>
+    <path d="M0,-40 L9,0 L0,40 L-9,0 Z" fill="#5b4a2f"/>
+    <path d="M-40,0 L0,9 L40,0 L0,-9 Z" fill="#9a7c1e"/>
+    <path d="M0,-40 L4,0 L0,12 L-4,0 Z" fill="#c9a227"/>
+    <text x="0" y="-50" text-anchor="middle" font-family="Georgia, serif" font-size="18" fill="#5b4a2f">N</text>
+  </g>
+
+  <!-- Sea labels -->
+  <g font-family="Georgia, serif" font-style="italic" fill="#6b5836" opacity="0.5">
+    <text x="120" y="520" font-size="26">Mar del Ocaso</text>
+    <text x="800" y="600" font-size="26" text-anchor="middle">Mar Angosto</text>
+  </g>
+
+  <!-- Border frame -->
+  <rect x="14" y="14" width="972" height="1372" fill="none" stroke="#5b4a2f" stroke-width="3"/>
+  <rect x="24" y="24" width="952" height="1352" fill="none" stroke="#5b4a2f" stroke-width="1" opacity="0.6"/>
+</svg>
