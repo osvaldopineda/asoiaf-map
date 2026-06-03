@@ -1,9 +1,14 @@
+import { useState } from 'react'
 import MapCanvas from './components/Map/MapCanvas'
 import RegionPanel from './components/Lore/RegionPanel'
+import LoadingScreen from './components/UI/LoadingScreen'
 
 export default function App() {
+  const [loading, setLoading] = useState(true)
+
   return (
     <div className="vignette relative h-full w-full overflow-hidden">
+      {loading && <LoadingScreen onDone={() => setLoading(false)} />}
       <MapCanvas />
 
       {/* Title overlay */}
